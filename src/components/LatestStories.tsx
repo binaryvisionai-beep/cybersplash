@@ -3,8 +3,6 @@ import { GoldDivider } from "./GoldDivider";
 import { PinkButton } from "./PinkButton";
 import { StoryCard } from "./StoryCard";
 
-const variants: Array<"a" | "b" | "c"> = ["a", "b", "c", "b", "c", "a", "c", "a", "b"];
-
 export function LatestStories() {
   return (
     <section className="stories" id="stories">
@@ -37,9 +35,9 @@ export function LatestStories() {
         />
       </div>
       <GoldDivider variant="small" />
-      <div className="stories-grid">
-        {stories.map((story, i) => (
-          <StoryCard key={story.slug} article={story} variant={variants[i]} />
+      <div className="stories-masonry">
+        {stories.map((story) => (
+          <StoryCard key={story.slug} article={story} />
         ))}
       </div>
       <div className="stories-cta">

@@ -12,7 +12,7 @@ export function Layout() {
   }, [location.pathname]);
 
   return (
-    <>
+    <div className="page-shell">
       <a className="skip-link" href="#main">
         Skip to content
       </a>
@@ -22,6 +22,6 @@ export function Layout() {
       </main>
       <Footer />
       <BackToTop />
-    </>
+    </div>
   );
 }

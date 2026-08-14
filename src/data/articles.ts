@@ -198,6 +198,90 @@ export const articles: Article[] = [
       "Where comfort meets confidence is the pavement: clothes that move, shine that does not wait for evening, and a stride that finishes the look.",
     ],
   },
+  {
+    slug: "linen-season-edit",
+    title: "Linen Season: Breathable Tailoring",
+    category: "fashion",
+    categoryLabel: "FASHION",
+    date: "FEBRUARY 18, 2026",
+    image: "/assets/fashion-edit/fashion-edit-fashion.webp",
+    excerpt: "A sample edit on linen shirts, open collars, and the first warm days.",
+    content: [
+      "This is sample editorial copy for the Linen Season story. It shows how a fashion post will read once the client supplies final text.",
+      "Keep the silhouette easy: a tucked shirt, a brown belt, and denim that still feels considered. Sample styling notes can be swapped later.",
+      "Bookmark this look for spring fittings, lookbooks, and weekend markets.",
+    ],
+  },
+  {
+    slug: "the-camel-coat-edit",
+    title: "The Camel Coat: A Lasting Classic",
+    category: "fashion",
+    categoryLabel: "FASHION",
+    date: "FEBRUARY 10, 2026",
+    image: "/assets/featured/latest-fashion-street-look.webp",
+    excerpt: "Sample story on a camel coat, pleats, and city columns.",
+    content: [
+      "Sample article: the camel coat remains the quiet hero of a cold-weather wardrobe.",
+      "Pair it with a metallic pleat or a simple boot and let the cloth do the speaking.",
+      "This placeholder can be replaced with a full client brief when ready.",
+    ],
+  },
+  {
+    slug: "weekend-skin-ritual",
+    title: "Weekend Skin Ritual",
+    category: "beauty",
+    categoryLabel: "BEAUTY",
+    date: "FEBRUARY 22, 2026",
+    image: "/assets/instagram/instagram-fashion-02.webp",
+    excerpt: "Sample beauty notes: a slower morning, a clean face, and daylight.",
+    content: [
+      "Sample beauty story for the CyberSplash beauty archive. Use this page to preview layout, type, and related posts.",
+      "A weekend ritual does not need ten steps. It needs light, a cloth, and time you do not rush.",
+      "Final product names and routines can be added by the editor later.",
+    ],
+  },
+  {
+    slug: "the-soft-lip",
+    title: "The Soft Lip",
+    category: "beauty",
+    categoryLabel: "BEAUTY",
+    date: "FEBRUARY 8, 2026",
+    image: "/assets/instagram/instagram-fashion-01.webp",
+    excerpt: "Sample makeup story on a lived-in lip and a lace-trimmed day look.",
+    content: [
+      "Sample copy for a beauty editorial on a soft, stained lip that still photographs.",
+      "Keep the rest of the face quiet so the mouth can be the only decision.",
+      "Replace this text with brand partnerships or product credits when confirmed.",
+    ],
+  },
+  {
+    slug: "cafe-hours",
+    title: "Cafe Hours: Dressing for the Long Table",
+    category: "lifestyle",
+    categoryLabel: "LIFESTYLE",
+    date: "FEBRUARY 14, 2026",
+    image: "/assets/categories/category-cozy-chic.webp",
+    excerpt: "Sample lifestyle piece on coffee, knitwear, and an outdoor table.",
+    content: [
+      "Sample lifestyle article: how to dress for a long cafe morning without looking dressed up.",
+      "An off-shoulder knit, a small bag, and a cup you actually finish.",
+      "This placeholder keeps the Lifestyle page looking complete during review.",
+    ],
+  },
+  {
+    slug: "packing-light",
+    title: "Packing Light: Three Cities, One Palette",
+    category: "lifestyle",
+    categoryLabel: "LIFESTYLE",
+    date: "JANUARY 28, 2026",
+    image: "/assets/fashion-edit/fashion-edit-travel.webp",
+    excerpt: "Sample travel-lifestyle notes for a rust dress and a city sidewalk.",
+    content: [
+      "Sample packing story: one palette, a split dress, a cap, and shoes that can walk.",
+      "Travel style for CyberSplash is about repeating neutrals until they feel like a uniform.",
+      "Swap in a real itinerary whenever the client is ready.",
+    ],
+  },
 ];
 
 export const featured = [
@@ -223,22 +307,53 @@ export const featured = [
 
 export const heroSlides = [
   {
-    slug: "elegant-neutral-looks",
     title: "Elegant Neutral Looks",
     subtitle: "Timeless style for every moment.",
     image: "/assets/hero/hero-elegant-neutral-look.webp",
+    href: "/fashion/elegant-neutral-looks",
+    cta: "Read the story",
   },
   {
-    slug: "modern-classic-outfits",
     title: "Modern Classic Outfits",
     subtitle: "Effortless fashion with a refined touch.",
     image: "/assets/hero/hero-modern-classic-outfits.webp",
+    href: "/fashion/modern-classic-outfits",
+    cta: "Read the story",
   },
   {
-    slug: "chic-street-style",
     title: "Chic Street Style",
     subtitle: "Where comfort meets confidence.",
     image: "/assets/hero/hero-chic-street-style.webp",
+    href: "/fashion/chic-street-style",
+    cta: "Read the story",
+  },
+  {
+    title: "The Return of Effortless Elegance",
+    subtitle: "Soft tones, minimal silhouettes, confident simplicity.",
+    image: "/assets/hero/editorial-effortless-elegance.webp",
+    href: "/fashion/the-return-of-effortless-elegance",
+    cta: "Open the editorial",
+  },
+  {
+    title: "Editor’s Picks",
+    subtitle: "Sun, straw, and a scarf that knows the wind.",
+    image: "/assets/featured/editors-picks-fashion-woman.webp",
+    href: "/fashion/elegant-neutral-looks",
+    cta: "See the pick",
+  },
+  {
+    title: "Glow & Grace",
+    subtitle: "Natural beauty trends for a radiant season.",
+    image: "/assets/stories/story-glow-and-grace.webp",
+    href: "/beauty/glow-and-grace",
+    cta: "Beauty notes",
+  },
+  {
+    title: "Cozy Chic",
+    subtitle: "Comfort dressing that still looks finished.",
+    image: "/assets/stories/story-cozy-chic.webp",
+    href: "/lifestyle/cozy-chic-comfort-meets-style",
+    cta: "Lifestyle edit",
   },
 ];
 
@@ -325,9 +440,14 @@ export function getArticlesByCategory(category: ArticleCategory) {
 }
 
 export function getRelated(article: Article, limit = 3) {
-  return articles
-    .filter((a) => a.slug !== article.slug && a.category === article.category)
-    .slice(0, limit);
+  const same = articles.filter(
+    (a) => a.slug !== article.slug && a.category === article.category,
+  );
+  if (same.length >= limit) return same.slice(0, limit);
+  const extra = articles.filter(
+    (a) => a.slug !== article.slug && !same.includes(a),
+  );
+  return [...same, ...extra].slice(0, limit);
 }
 
 export function articlePath(article: Article) {

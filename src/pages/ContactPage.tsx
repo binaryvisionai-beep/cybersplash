@@ -36,6 +36,27 @@ export function ContactPage() {
       <p className="page-intro">
         Write to the edit. Collaborations, notes, and styling questions are always welcome.
       </p>
+      <div className="contact-details">
+        <p>
+          <strong>Sample studio</strong>
+          <br />
+          14 Atelier Lane, Suite 2
+          <br />
+          (placeholder address)
+        </p>
+        <p>
+          <strong>Desk hours</strong>
+          <br />
+          Mon–Fri, 10:00–18:00
+          <br />
+          Sample hours for review
+        </p>
+        <p>
+          <strong>Press</strong>
+          <br />
+          press@cybersplash.com
+        </p>
+      </div>
       {success ? (
         <p className="form-success" role="status">
           Thank you, {name}. Your message has been received — we will be in touch.

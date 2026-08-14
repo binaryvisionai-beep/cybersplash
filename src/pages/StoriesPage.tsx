@@ -1,22 +1,20 @@
-import { Link } from "react-router-dom";
-import { articlePath, stories } from "../data/articles";
+import { articles } from "../data/articles";
 import { GoldDivider } from "../components/GoldDivider";
+import { StoryCard } from "../components/StoryCard";
 
 export function StoriesPage() {
   return (
     <section className="page-block">
+      <p className="meta">THE ARCHIVE</p>
       <h1>Latest Stories</h1>
       <GoldDivider variant="small" />
-      <div className="listing-grid">
-        {stories.map((item) => (
-          <Link className="listing-card" key={item.slug} to={articlePath(item)}>
-            <img src={item.image} alt={item.title} loading="lazy" />
-            <p className="meta">
-              {item.date} — {item.categoryLabel}
-            </p>
-            <h2>{item.title}</h2>
-            <p>{item.excerpt}</p>
-          </Link>
+      <p className="page-intro">
+        Every CyberSplash story in one masonry wall — fashion, beauty, and lifestyle,
+        packed the way a magazine board is packed.
+      </p>
+      <div className="stories-masonry stories-masonry--page">
+        {articles.map((item) => (
+          <StoryCard key={item.slug} article={item} />
         ))}
       </div>
     </section>

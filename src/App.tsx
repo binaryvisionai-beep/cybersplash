@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Home } from "./pages/Home";
 import { CategoryPage } from "./pages/CategoryPage";
@@ -7,6 +7,8 @@ import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
 import { StoriesPage } from "./pages/StoriesPage";
 import { CategoriesPage } from "./pages/CategoriesPage";
+
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 export default function App() {
   return (
@@ -23,7 +25,7 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/stories" element={<StoriesPage />} />
         <Route path="/categories" element={<CategoriesPage />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

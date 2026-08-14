@@ -18,37 +18,39 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="site-header">
-      <div className="header-brand">
-        <img
-          className="deco deco--header-spark-l"
-          src="/assets/decorations/gold-sparkles-cluster.png"
-          alt=""
-        />
-        <img
-          className="deco deco--header-spark-r"
-          src="/assets/decorations/gold-particles-bokeh.png"
-          alt=""
-        />
-        <img
-          className="deco deco--header-leaf-l"
-          src="/assets/decorations/gold-botanical-sprig.png"
-          alt=""
-        />
-        <img
-          className="deco deco--header-leaf-r"
-          src="/assets/decorations/gold-botanical-berries.png"
-          alt=""
-        />
-        <NavLink className="brand" to="/" aria-label="CyberSplash home">
+    <>
+      <header className="site-header">
+        <div className="header-brand">
           <img
-            className="brand__emblem"
-            src="/assets/logo/cybersplash-logo-gold-outline.png"
+            className="deco deco--header-spark-l"
+            src="/assets/decorations/gold-sparkles-cluster.png"
             alt=""
           />
-          <span className="brand__wordmark">CYBERSPLASH</span>
-        </NavLink>
-      </div>
+          <img
+            className="deco deco--header-spark-r"
+            src="/assets/decorations/gold-particles-bokeh.png"
+            alt=""
+          />
+          <img
+            className="deco deco--header-leaf-l"
+            src="/assets/decorations/gold-botanical-sprig.png"
+            alt=""
+          />
+          <img
+            className="deco deco--header-leaf-r"
+            src="/assets/decorations/gold-botanical-berries.png"
+            alt=""
+          />
+          <NavLink className="brand" to="/" aria-label="CyberSplash home">
+            <img
+              className="brand__emblem"
+              src="/assets/logo/cybersplash-logo-gold-outline.png"
+              alt=""
+            />
+            <span className="brand__wordmark">CYBERSPLASH</span>
+          </NavLink>
+        </div>
+      </header>
 
       <div className="nav-bar">
         <button
@@ -76,6 +78,6 @@ export function Header() {
           ))}
         </nav>
       </div>
-    </header>
+    </>
   );
 }

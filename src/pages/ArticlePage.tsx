@@ -30,12 +30,26 @@ export function ArticlePage() {
       </p>
       <h1>{article.title}</h1>
       <GoldDivider variant="small" />
+      <p className="article-page__byline">By the CyberSplash Edit · 4 min read · Sample post</p>
       <img className="article-page__hero" src={article.image} alt={article.title} />
       <div className="article-page__body">
         {article.content.map((p) => (
-          <p key={p.slice(0, 24)}>{p}</p>
+          <p key={p.slice(0, 32)}>{p}</p>
         ))}
+        <blockquote>
+          Sample pull quote: elegance is a decision you make in the morning and keep
+          until the light goes.
+        </blockquote>
+        <p>
+          This closing paragraph is sample copy so every article page feels finished
+          during review. Swap it for credits, product links, or a shoppable list later.
+        </p>
       </div>
+      <ul className="article-tags">
+        <li>{article.categoryLabel}</li>
+        <li>Sample tag</li>
+        <li>Editorial</li>
+      </ul>
       <p className="article-page__back">
         <Link to={`/${article.category}`}>← Back to {article.category}</Link>
       </p>
