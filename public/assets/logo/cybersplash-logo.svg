@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 340" fill="none">
+  <defs>
+    <linearGradient id="goldStroke" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F3D27A"/>
+      <stop offset="45%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#B8860B"/>
+    </linearGradient>
+    <linearGradient id="blackGloss" x1="0.15" y1="0" x2="0.85" y2="1">
+      <stop offset="0%" stop-color="#2A2A2A"/>
+      <stop offset="35%" stop-color="#0A0A0A"/>
+      <stop offset="70%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(90,0) scale(1)">
+    <path d="M120 14c0 0-22 1.5-28 18  -4 11 6 20 20 22" stroke="url(#goldStroke)" stroke-width="4.2" stroke-linecap="round" fill="none"/>
+    <path d="M112 14c8-1 16 2 16 14 0 8-6 12-12 14" stroke="url(#goldStroke)" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+    <path d="M92 52 C78 56 62 68 54 86" stroke="url(#goldStroke)" stroke-width="3.6" stroke-linecap="round"/>
+    <path d="M148 52 C162 56 178 68 186 86" stroke="url(#goldStroke)" stroke-width="3.6" stroke-linecap="round"/>
+    <path d="M108 58 C78 52 42 68 28 102 C18 128 28 158 52 168 C72 176 92 164 104 142 C110 128 112 108 108 58Z" fill="url(#blackGloss)" stroke="url(#goldStroke)" stroke-width="3.2"/>
+    <path d="M132 58 C162 52 198 68 212 102 C222 128 212 158 188 168 C168 176 148 164 136 142 C130 128 128 108 132 58Z" fill="url(#blackGloss)" stroke="url(#goldStroke)" stroke-width="3.2"/>
+    <path d="M100 138 C72 148 48 168 44 196 C42 214 56 226 74 222 C90 218 104 198 110 176 C112 164 108 148 100 138Z" fill="url(#blackGloss)" stroke="url(#goldStroke)" stroke-width="3"/>
+    <path d="M140 138 C168 148 192 168 196 196 C198 214 184 226 166 222 C150 218 136 198 130 176 C128 164 132 148 140 138Z" fill="url(#blackGloss)" stroke="url(#goldStroke)" stroke-width="3"/>
+    <path d="M96 200 C78 214 62 230 70 246 C78 258 96 252 104 236 C108 226 106 212 96 200Z" fill="url(#blackGloss)" stroke="url(#goldStroke)" stroke-width="2.8"/>
+    <path d="M144 200 C162 214 178 230 170 246 C162 258 144 252 136 236 C132 226 134 212 144 200Z" fill="url(#blackGloss)" stroke="url(#goldStroke)" stroke-width="2.8"/>
+    <path d="M120 50 C116 70 114 110 116 150 C117 190 118 220 120 248 C122 220 123 190 124 150 C126 110 124 70 120 50Z" fill="url(#blackGloss)" stroke="url(#goldStroke)" stroke-width="2.6"/>
+    <path d="M86 96 C74 108 70 128 80 140" stroke="url(#goldStroke)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M154 96 C166 108 170 128 160 140" stroke="url(#goldStroke)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  </g>
+  <text x="210" y="318" text-anchor="middle" fill="#111111" font-family="Georgia, 'Palatino Linotype', 'Times New Roman', serif" font-size="28" letter-spacing="10">CYBERSPLASH</text>
+</svg>
