@@ -1,25 +1,88 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { heroSlides } from "../data/articles";
 
-export function HeroSection() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const touchX = useRef<number | null>(null);
-  const count = heroSlides.length;
+const AUTO_MS = 5500;
+const GUTTER = 12;
 
-  const go = useCallback(
-    (dir: number) => {
-      setIndex((i) => (i + dir + count) % count);
-    },
-    [count],
+export function HeroSection() {
+  const count = heroSlides.length;
+  const [visible, setVisible] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches
+      ? 1
+      : 3,
+  );
+  const [index, setIndex] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia("(max-width: 720px)").matches
+      ? 1
+      : 3,
+  );
+  const [animate, setAnimate] = useState(true);
+  const [paused, setPaused] = useState(false);
+  const [vpw, setVpw] = useState(0);
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const touchX = useRef<number | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 720px)");
+    const apply = () => setVisible(mq.matches ? 1 : 3);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  useEffect(() => {
+    setIndex(visible);
+    setAnimate(false);
+  }, [visible]);
+
+  useEffect(() => {
+    if (animate) return;
+    const id = requestAnimationFrame(() => setAnimate(true));
+    return () => cancelAnimationFrame(id);
+  }, [animate]);
+
+  useEffect(() => {
+    const el = viewportRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setVpw(el.clientWidth));
+    ro.observe(el);
+    setVpw(el.clientWidth);
+    return () => ro.disconnect();
+  }, []);
+
+  const loopSlides = useMemo(
+    () => [
+      ...heroSlides.slice(-visible),
+      ...heroSlides,
+      ...heroSlides.slice(0, visible),
+    ],
+    [visible],
   );
 
-  const goTo = (i: number) => setIndex(i);
+  const go = useCallback((dir: number) => {
+    setAnimate(true);
+    setIndex((i) => i + dir);
+  }, []);
+
+  const goTo = (slideIndex: number) => {
+    setAnimate(true);
+    setIndex(slideIndex + visible);
+  };
+
+  const onTransitionEnd = () => {
+    if (index >= count + visible) {
+      setAnimate(false);
+      setIndex(visible);
+    } else if (index < visible) {
+      setAnimate(false);
+      setIndex(index + count);
+    }
+  };
 
   useEffect(() => {
     if (paused) return;
-    const id = window.setInterval(() => go(1), 5500);
+    const id = window.setInterval(() => go(1), AUTO_MS);
     return () => window.clearInterval(id);
   }, [paused, go]);
 
@@ -32,7 +95,10 @@ export function HeroSection() {
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
 
-  const slide = heroSlides[index];
+  const realIndex = ((index - visible) % count + count) % count;
+  const slideWidth =
+    vpw > 0 ? (vpw - GUTTER * Math.max(visible - 1, 0)) / visible : 0;
+  const offset = index * (slideWidth + GUTTER);
 
   return (
     <section
@@ -43,7 +109,8 @@ export function HeroSection() {
       onMouseLeave={() => setPaused(false)}
     >
       <div
-        className="hero-slider__track"
+        className="hero-slider__viewport"
+        ref={viewportRef}
         onTouchStart={(e) => {
           touchX.current = e.touches[0].clientX;
         }}
@@ -55,22 +122,33 @@ export function HeroSection() {
           touchX.current = null;
         }}
       >
-        {heroSlides.map((item, i) => (
-          <div
-            key={`${item.title}-${i}`}
-            className={i === index ? "hero-slide is-active" : "hero-slide"}
-            aria-hidden={i !== index}
-          >
-            <img src={item.image} alt={item.title} />
-          </div>
-        ))}
-        <div className="hero-slide__copy">
-          <p className="hero-slide__kicker">CyberSplash Edit</p>
-          <h1>{slide.title}</h1>
-          <p className="hero-slide__sub">{slide.subtitle}</p>
-          <Link className="hero-slide__cta" to={slide.href}>
-            {slide.cta}
-          </Link>
+        <div
+          className={
+            animate
+              ? "hero-slider__track"
+              : "hero-slider__track is-instant"
+          }
+          style={{
+            transform: slideWidth ? `translateX(-${offset}px)` : undefined,
+          }}
+          onTransitionEnd={onTransitionEnd}
+        >
+          {loopSlides.map((item, i) => (
+            <Link
+              key={`${item.title}-${i}`}
+              className="hero-slide"
+              to={item.href}
+              style={{ width: slideWidth || undefined }}
+              aria-hidden={i < index || i >= index + visible}
+              tabIndex={i < index || i >= index + visible ? -1 : 0}
+            >
+              <img src={item.image} alt={item.title} />
+              <div className="hero-slide__copy">
+                <h2>{item.title}</h2>
+                <p className="hero-slide__sub">{item.subtitle}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
 
@@ -97,9 +175,9 @@ export function HeroSection() {
             key={`${item.title}-${i}`}
             type="button"
             role="tab"
-            aria-selected={i === index}
+            aria-selected={i === realIndex}
             aria-label={`Show ${item.title}`}
-            className={i === index ? "is-active" : ""}
+            className={i === realIndex ? "is-active" : ""}
             onClick={() => goTo(i)}
           />
         ))}
