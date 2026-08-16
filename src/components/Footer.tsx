@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { footerNav } from "../data/articles";
-import { GoldDivider } from "./GoldDivider";
 
 const social = [
   { href: "https://facebook.com", src: "/assets/icons/icon-facebook.svg", label: "Facebook" },
@@ -29,7 +28,6 @@ export function Footer() {
           alt=""
         />
         <p className="footer-wordmark">CYBERSPLASH</p>
-        <GoldDivider variant="triple" className="footer-divider" />
         <nav className="footer-nav" aria-label="Footer">
           {footerNav.map((item, i) => (
             <span key={item.to}>

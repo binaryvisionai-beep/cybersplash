@@ -4,7 +4,7 @@ type Props = {
 };
 
 const srcs = {
-  triple: "/assets/decorations/gold-divider-triple-diamond.svg",
+  triple: "/assets/decorations/gold-divider-small.png",
   single: "/assets/decorations/gold-divider-diamond.svg",
   ornate: "/assets/decorations/gold-divider-ornate.svg",
   small: "/assets/decorations/gold-divider-small.svg",
