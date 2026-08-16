@@ -25,7 +25,7 @@ export function Footer() {
       <div className="footer-inner">
         <img
           className="footer-emblem"
-          src="/assets/logo/cybersplash-logo-gold-outline.png"
+          src="/assets/newLogo/cybersplash-logo.png"
           alt=""
         />
         <p className="footer-wordmark">CYBERSPLASH</p>

@@ -44,7 +44,7 @@ export function Header() {
           <NavLink className="brand" to="/" aria-label="CyberSplash home">
             <img
               className="brand__emblem"
-              src="/assets/logo/cybersplash-logo-gold-outline.png"
+              src="/assets/newLogo/cybersplash-logo.png"
               alt=""
             />
             <span className="brand__wordmark">CYBERSPLASH</span>
