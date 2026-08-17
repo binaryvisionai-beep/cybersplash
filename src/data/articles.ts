@@ -415,20 +415,20 @@ export const instagramPhotos = [
 ];
 
 export const navItems = [
-  { to: "/", label: "HOME" },
-  { to: "/fashion", label: "FASHION" },
-  { to: "/beauty", label: "BEAUTY" },
-  { to: "/lifestyle", label: "LIFESTYLE" },
-  { to: "/about", label: "ABOUT" },
-  { to: "/contact", label: "CONTACT" },
+  { to: "/#home", label: "HOME" },
+  { to: "/#fashion", label: "FASHION" },
+  { to: "/#beauty", label: "BEAUTY" },
+  { to: "/#lifestyle", label: "LIFESTYLE" },
+  { to: "/#about", label: "ABOUT" },
+  { to: "/#contact", label: "CONTACT" },
 ];
 
 export const footerNav = [
-  { to: "/", label: "Home" },
-  { to: "/fashion", label: "Fashion" },
-  { to: "/beauty", label: "Beauty" },
-  { to: "/lifestyle", label: "Lifestyle" },
-  { to: "/contact", label: "Contact" },
+  { to: "/#home", label: "Home" },
+  { to: "/#fashion", label: "Fashion" },
+  { to: "/#beauty", label: "Beauty" },
+  { to: "/#lifestyle", label: "Lifestyle" },
+  { to: "/#contact", label: "Contact" },
 ];
 
 export function getArticle(category: string, slug: string) {
